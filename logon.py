@@ -22,16 +22,25 @@ def main():
     #writing label to window
     label = QLabel(widget)
     label.setFont(QFont("Arial Font", 10))
+    label.move(180,75)
     label.setText("Hello, would you like to login or register")
     label.show()
 
     #wiring buttons to screen
     btn = QPushButton(widget)
     btn.setFont(QFont("Arial Font", 5))
-    btn.setText("Login")
-    btn.setGeometry(200, 150, 100, 40)
+    btn.setText("Register")
+    btn.setGeometry(100, 200, 190, 40)
     btn.move(200,200)
     btn.show()
+
+    #wiring second buttons to screen
+    btn_2 = QPushButton(widget)
+    btn_2.setFont(QFont("Arial Font", 5))
+    btn_2.setText("Login")
+    btn_2.setGeometry(100, 200, 190, 40)
+    btn_2.move(200,250)
+    btn_2.show()
 
 
     sys.exit(program.exec_())
