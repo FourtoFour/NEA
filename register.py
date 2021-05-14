@@ -26,21 +26,47 @@ def main():
     label.setText("Please Register with a username and password.")
     label.show()
 
+    #username labels
+
+    label_2 = QLabel(widget)
+    label_2.setFont(QFont("Arial Font", 9.5))
+    label_2.move(50,67.5)
+    label_2.setText("Username ")
+    label_2.show()
+
+    #password labels
+
+    label_3 = QLabel(widget)
+    label_3.setFont(QFont("Arial Font", 9.5))
+    label_3.move(50,97.5)
+    label_3.setText("Password ")
+    label_3.show()
+    
+
     #wiring lineEdit to screen
     ent = QLineEdit(widget)
     ent.setGeometry(100, 200, 175, 20)
-    ent.move(100,67.5)
+    ent.move(125,67.5)
     ent.show()
 
     
     #wiring second lineEdit to screen
     ent_2 = QLineEdit(widget)
+    ent_2.setEchoMode(QLineEdit.Password)
     ent_2.setGeometry(100, 200, 175, 20)
-    ent_2.move(100,67.5)
+    ent_2.move(125, 97.5)
     ent_2.show()
+
+    #Register button
+    btn = QPushButton(widget)
+    btn.setText("Register...")
+    btn.setGeometry(100, 200, 100,25)
+    btn.move(150, 127.5)
+    btn.show()
 
     
 
+    program.setStyle("fusion")
     sys.exit(program.exec_())
 
 #Executing program
