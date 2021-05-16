@@ -85,6 +85,49 @@ def main():
             msg_2.setWindowTitle("Warning")
             msg_2.exec_()
             
+        elif len(ent.text()) < 4:
+            
+            msg_3 = QMessageBox()
+            msg_3.setIcon(QMessageBox.Warning)
+            msg_3.setText("Username is less than 4 characters")
+            msg_3.setWindowTitle("Warning")
+            msg_3.exec_()
+            
+        elif len(ent.text()) > 16:
+            
+            msg_4 = QMessageBox()
+            msg_4.setIcon(QMessageBox.Warning)
+            msg_4.setText("Username is more than 16 characters")
+            msg_4.setWindowTitle("Warning")
+            msg_4.exec_()
+            
+        elif len(ent.text()) < 4:
+            
+            msg_5 = QMessageBox()
+            msg_5.setIcon(QMessageBox.Warning)
+            msg_5.setText("Password is less than 4 characters")
+            msg_5.setWindowTitle("Warning")
+            msg_5.exec_()
+            
+        elif len(ent.text()) > 16:
+            
+            msg_6 = QMessageBox()
+            msg_6.setIcon(QMessageBox.Warning)
+            msg_6.setText("Password is more than 16 characters")
+            msg_6.setWindowTitle("Warning")
+            msg_6.exec_()
+            
+        else:
+            
+            msg_2 = QMessageBox()
+            msg_2.setIcon(QMessageBox.Warning)
+            msg_2.setText("Registration success!")
+            msg_2.setWindowTitle("Information")
+            msg_2.exec_()
+            
+            #Encryption ans storage of credentials
+            
+            
         
 
 
