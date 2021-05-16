@@ -1,7 +1,7 @@
 #register.py
 
 #Importing modules required for the Gui
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QLineEdit
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QLineEdit, QMessageBox
 from PyQt5.QtGui import QFont
 import PyQt5.QtCore
 import sys
@@ -64,9 +64,35 @@ def main():
     btn.move(150, 127.5)
     btn.show()
 
-    
+    #clicked button function
+    def btn_clicked():
+        print(ent.text())
+        print(ent_2.text())
+        if ent.text() == "":
+            
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Warning)
+            msg.setText("Enter a Username")
+            msg.setWindowTitle("Warning")
+            msg.exec_()
+            
+            
+        elif ent_2.text() == "":
+            
+            msg_2 = QMessageBox()
+            msg_2.setIcon(QMessageBox.Warning)
+            msg_2.setText("Enter a Password")
+            msg_2.setWindowTitle("Warning")
+            msg_2.exec_()
+            
+        
 
+
+
+    btn.clicked.connect(btn_clicked)
+    
     program.setStyle("fusion")
+    
     sys.exit(program.exec_())
 
 #Executing program
