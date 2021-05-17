@@ -4,6 +4,10 @@
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QLineEdit, QMessageBox
 from PyQt5.QtGui import QFont
 import PyQt5.QtCore
+import urllib.request
+import requests
+import datetime
+import sqlite3
 import sys
 
 
@@ -101,7 +105,7 @@ def main():
             msg_4.setWindowTitle("Warning")
             msg_4.exec_()
             
-        elif len(ent.text()) < 4:
+        elif len(ent_2.text()) < 4:
             
             msg_5 = QMessageBox()
             msg_5.setIcon(QMessageBox.Warning)
@@ -109,7 +113,7 @@ def main():
             msg_5.setWindowTitle("Warning")
             msg_5.exec_()
             
-        elif len(ent.text()) > 16:
+        elif len(ent_2.text()) > 16:
             
             msg_6 = QMessageBox()
             msg_6.setIcon(QMessageBox.Warning)
@@ -119,13 +123,58 @@ def main():
             
         else:
             
-            msg_2 = QMessageBox()
-            msg_2.setIcon(QMessageBox.Warning)
-            msg_2.setText("Registration success!")
-            msg_2.setWindowTitle("Information")
-            msg_2.exec_()
+            msg_7 = QMessageBox()
+            msg_7.setIcon(QMessageBox.Information)
+            msg_7.setText("Registration success!")
+            msg_7.setWindowTitle("Information")
+            msg_7.exec_()
             
-            #Encryption ans storage of credentials
+            #storage of credentials
+
+            #sourcing client ip for location storage
+            client_ip = urllib.request.urlopen('https://ident.me').read().decode('utf8')
+
+            print(client_ip)
+
+            req = requests.get("http://ip-api.com/json/"+client_ip+"?fields=countryCode")
+
+            print(req.text)
+
+            #sourcing the date for account creation storage
+
+            cur_date=datetime.datetime.now()
+
+            cur_day = cur_date.strftime("%d")
+            cur_mnth = cur_date.strftime("%m")
+            cur_yr = cur_date.strftime("%G")
+
+            cur_add = cur_day+cur_mnth+cur_yr
+
+            print(cur_add)
+
+
+            
+
+            #inputting data into database
+
+            
+               
+            db_con = sqlite3.connect(r"\\canonschool.internal\ud$\Students\Work\2015\mathew.john15\Downloads\nea_db.db")
+    
+            nav = db_con.cursor()
+    
+            sql = ('INSERT INTO Users(Username, Password, Creation_Locale, Creation_date) VALUES(%s, %s, %d, %d );')
+
+            val = (ent,ent_2,req.text,cur_add)
+
+            nav.execute(sql, val)
+            
+
+            db_con.commit()
+
+            nav.close()
+
+            db_con.close()
             
             
         
