@@ -7,8 +7,9 @@ import PyQt5.QtCore
 import urllib.request
 import requests
 import datetime
-import sqlite3
+import json
 import sys
+import csv
 
 
 
@@ -72,6 +73,8 @@ def main():
     def btn_clicked():
         print(ent.text())
         print(ent_2.text())
+        new_ent = ent.text()
+        new_ent_2 = ent_2.text()
         if ent.text() == "":
             
             msg = QMessageBox()
@@ -123,12 +126,7 @@ def main():
             
         else:
             
-            msg_7 = QMessageBox()
-            msg_7.setIcon(QMessageBox.Information)
-            msg_7.setText("Registration success!")
-            msg_7.setWindowTitle("Information")
-            msg_7.exec_()
-            
+           
             #storage of credentials
 
             #sourcing client ip for location storage
@@ -155,27 +153,39 @@ def main():
 
             
 
-            #inputting data into database
+            #inputting data into file
+
+            print("Got to this point")
 
             
-               
-            db_con = sqlite3.connect(r"\\canonschool.internal\ud$\Students\Work\2015\mathew.john15\Downloads\nea_db.db")
-    
-            nav = db_con.cursor()
-    
-            sql = ('INSERT INTO Users(Username, Password, Creation_Locale, Creation_date) VALUES(%s, %s, %d, %d );')
 
-            val = (ent,ent_2,req.text,cur_add)
+            with open('credstore.csv', 'a') as f:
 
-            nav.execute(sql, val)
+                writer = csv.writer(f)
+                
+                row = [new_ent,new_ent_2,req.text,cur_add]
+                
+                writer.writerow(row)
+
+
+                
             
 
-            db_con.commit()
+            #with open('usercred.txt','a') as csv_file:
+                #writer=csv.writer(csv_file)
+                #writer.writerow('sdfsdgfsd')
+                
 
-            nav.close()
-
-            db_con.close()
             
+            #registration succses message
+
+            msg_7 = QMessageBox()
+            msg_7.setIcon(QMessageBox.Information)
+            msg_7.setText("Registration success!")
+            msg_7.setWindowTitle("Information")
+            msg_7.exec_()
+
+            sys.exit(program.exec_())
             
         
 

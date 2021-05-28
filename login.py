@@ -88,14 +88,14 @@ def main():
         else:
             
             msg_3 = QMessageBox()
-            msg_3.setIcon(QMessageBox.Warning)
+            msg_3.setIcon(QMessageBox.Information)
             msg_3.setText("Logging in...")
             msg_3.setWindowTitle("Information")
             msg_3.exec_()
             
     
             
-            #Encryption ans storage of credentials
+            #Process for finding credentials
             
             
         
