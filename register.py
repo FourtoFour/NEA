@@ -161,22 +161,19 @@ def main():
 
             with open('credstore.csv', 'a') as f:
 
+                #initialising csv
+
                 writer = csv.writer(f)
+
+                #allocating row for writing
                 
                 row = [new_ent,new_ent_2,req.text,cur_add]
+
+                #writing our values to row
                 
                 writer.writerow(row)
 
 
-                
-            
-
-            #with open('usercred.txt','a') as csv_file:
-                #writer=csv.writer(csv_file)
-                #writer.writerow('sdfsdgfsd')
-                
-
-            
             #registration succses message
 
             msg_7 = QMessageBox()

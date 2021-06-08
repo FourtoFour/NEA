@@ -4,6 +4,7 @@
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QLineEdit, QMessageBox
 from PyQt5.QtGui import QFont
 import PyQt5.QtCore
+import csv
 import sys
 
 
@@ -66,8 +67,8 @@ def main():
 
     #clicked button function
     def btn_clicked():
-        print(ent.text())
-        print(ent_2.text())
+        #print(ent.text())
+        #print(ent_2.text())
         if ent.text() == "":
             
             msg = QMessageBox()
@@ -87,15 +88,56 @@ def main():
             
         else:
             
-            msg_3 = QMessageBox()
-            msg_3.setIcon(QMessageBox.Information)
-            msg_3.setText("Logging in...")
-            msg_3.setWindowTitle("Information")
-            msg_3.exec_()
+            #msg_3 = QMessageBox()
+            #msg_3.setIcon(QMessageBox.Information)
+            #msg_3.setText("Logging in...")
+            #msg_3.setWindowTitle("Information")
+            #msg_3.exec_()
             
     
             
             #Process for finding credentials
+            
+
+
+            
+
+            with open('credstore.csv', 'r') as f:
+                read = csv.reader(f)
+                for row in read:
+                    if ent.text() and ent_2.text() in row:
+                        legitimacy = True
+                        print(legitimacy)
+                        
+                    else:
+                        
+                        legitimacy = False
+                        print(legitimacy)
+
+
+
+            if legitimacy == True:
+                msg_3 = QMessageBox()
+                msg_3.setIcon(QMessageBox.Information)
+                msg_3.setText("Logging in as "+ ent)
+                msg_3.setWindowTitle("Information")
+                msg_3.exec_()
+
+                sys.exit(program.exec_())
+
+
+
+
+
+            elif legitimacy == False:
+                msg_4 = QMessageBox()
+                msg_4.setIcon(QMessageBox.Error)
+                msg_4.setText("Incorrect login credentials")
+                msg_4.setWindowTitle("Error")
+                msg_4.exec_()
+
+                        
+                        
             
             
         
