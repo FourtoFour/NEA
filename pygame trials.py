@@ -41,9 +41,14 @@ while not done:
     pygame.draw.rect(scrn, (225,225,225), pygame.Rect(30, 30, 20, 450))
     pygame.draw.rect(scrn, (225,225,225), pygame.Rect(30, 30, 450, 20))
     pygame.draw.rect(scrn, (225,225,225), pygame.Rect(30, 460, 450, 20))
+    pygame.draw.rect(scrn, (225,225,225), pygame.Rect(460, 30, 20, 450))
+
     
+    #draw rectangle for player movement
     pygame.draw.rect(scrn, (0,128,225), pygame.Rect(x,y, 90,90))
 
+    
+    #update display each frame
     pygame.display.update()
 
 
