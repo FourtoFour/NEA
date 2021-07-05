@@ -1,6 +1,9 @@
 import pygame as pg
 import time
 
+
+#inner barrier needs fixing
+
 #initiate
 pg.init()
 
@@ -22,10 +25,10 @@ x = 60
 y = 60
 
 #player movment speeds
-mov_neg_y = 2000
-mov_pos_y = 2000
-mov_neg_x = 2000
-mov_pos_x = 2000
+mov_neg_y = 75
+mov_pos_y = 75
+mov_neg_x = 75
+mov_pos_x = 75
 
 #frame counter sort of?
 clock = pg.time.Clock()
@@ -38,7 +41,7 @@ while not done:
 
             done = True
     #boilerplate over
-    clock.tick(2000)
+    clock.tick(200)
 
     #registering key presses
     pressed = pg.key.get_pressed()
@@ -55,6 +58,12 @@ while not done:
     bound_2 = pg.draw.rect(scrn, (225,225,225), pg.Rect(30, 30, 450, 20))
     bound_3 = pg.draw.rect(scrn, (225,225,225), pg.Rect(30, 460, 450, 20))
     bound_4 = pg.draw.rect(scrn, (225,225,225), pg.Rect(460, 30, 20, 450))
+    #middle boundaries
+    bound_5 = pg.draw.rect(scrn, (225,225,225), pg.Rect(165, 150, 20, 150))
+    bound_6 = pg.draw.rect(scrn, (225,225,225), pg.Rect(175, 150, 150, 20))
+    bound_7 = pg.draw.rect(scrn, (225,225,225), pg.Rect(165, 300, 180, 20))
+    bound_8 = pg.draw.rect(scrn, (225,225,225), pg.Rect(325, 150, 20, 150))
+    
 
     
     #draw rectangle for player movement
@@ -66,6 +75,11 @@ while not done:
     collision_2 = bound_2.colliderect(player_rect)
     collision_3 = bound_3.colliderect(player_rect)
     collision_4 = bound_4.colliderect(player_rect)
+    collision_5 = bound_5.colliderect(player_rect)
+    collision_6 = bound_6.colliderect(player_rect)
+    collision_7 = bound_7.colliderect(player_rect)
+    collision_8 = bound_8.colliderect(player_rect)
+    
     if collision_1 == 1:
         print("collision_1 is hit")
     elif collision_2 == 1:
@@ -100,6 +114,36 @@ while not done:
 
     #bottom barrier
     while collision_3 == 1:
+        mov_pos_y = 0
+        break
+    else:
+        mov_pos_y = 2
+
+    #inner barriers
+
+    #left in barrier
+    while collision_5 == 1:
+        mov_neg_x = 0
+        break
+    else:
+        mov_neg_x = 2
+
+    #right in barrier
+    while collision_8 == 1:
+        mov_pos_x = 0
+        break
+    else:
+        mov_pos_x = 2
+
+    #top in barrier
+    while collision_6 == 1:
+        mov_neg_y = 0
+        break
+    else:
+        mov_neg_y = 2
+
+    #bottom in barrier
+    while collision_7 == 1:
         mov_pos_y = 0
         break
     else:
