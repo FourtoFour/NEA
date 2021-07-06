@@ -2,7 +2,7 @@ import pygame as pg
 import time
 
 
-#inner barrier needs fixing
+#need to properly implement background
 
 #initiate
 pg.init()
@@ -13,7 +13,10 @@ scrn = pg.display.set_mode((500,500))
 #title for program
 pg.display.set_caption("pg_trials.py")
 
+#background for game
+bg = pg.image.load("updatedmapdirt.png")
 
+#idk what this does
 done = False
 
 
@@ -25,10 +28,10 @@ x = 60
 y = 60
 
 #player movment speeds
-mov_neg_y = 75
-mov_pos_y = 75
-mov_neg_x = 75
-mov_pos_x = 75
+in_mov_neg_y , mov_neg_y = 1,1
+in_mov_pos_y , mov_pos_y = 1,1
+in_mov_neg_x , mov_neg_x = 1,1
+in_mov_pos_x , mov_pos_x = 1,1
 
 #frame counter sort of?
 clock = pg.time.Clock()
@@ -40,15 +43,16 @@ while not done:
         if event.type == pg.QUIT:
 
             done = True
+
     #boilerplate over
     clock.tick(200)
 
     #registering key presses
     pressed = pg.key.get_pressed()
-    if pressed[pg.K_UP]: y-= mov_neg_y
-    if pressed[pg.K_DOWN]: y+= mov_pos_y
-    if pressed[pg.K_LEFT]: x-= mov_neg_x
-    if pressed[pg.K_RIGHT]: x+= mov_pos_x
+    if pressed[pg.K_UP]: y-= mov_neg_y and in_mov_neg_y
+    if pressed[pg.K_DOWN]: y+= mov_pos_y and in_mov_pos_y
+    if pressed[pg.K_LEFT]: x-= mov_neg_x and in_mov_neg_x
+    if pressed[pg.K_RIGHT]: x+= mov_pos_x and in_mov_pos_x
 
 
     scrn.fill((0,0,0))
@@ -67,7 +71,7 @@ while not done:
 
     
     #draw rectangle for player movement
-    player_rect = pg.draw.rect(scrn, (0,128,225), pg.Rect(x,y, 90,90))
+    player_rect = pg.draw.rect(scrn, (0,128,225), pg.Rect(x,y, 20,20))
     
 
     #collisions between player and stationary boundaries
@@ -88,7 +92,14 @@ while not done:
         print("collision_3 is hit")
     elif collision_4 == 1:
         print("collision_4 is hit")
-
+    elif collision_5 == 1:
+        print("collision_5 is hit")
+    elif collision_6 == 1:
+        print("collision_6 is hit")
+    elif collision_7 == 1:
+        print("collision_7 is hit")
+    elif collision_8 == 1:
+        print("collision_8 is hit")
     #denying collision moves
 
     #left barrier
@@ -96,68 +107,66 @@ while not done:
         mov_neg_x = 0
         break
     else:
-        mov_neg_x = 2
+        mov_neg_x = 1
 
     #right barrier
     while collision_4 == 1:
         mov_pos_x = 0
         break
     else:
-        mov_pos_x = 2
+        mov_pos_x = 1
 
     #top barrier
     while collision_2 == 1:
         mov_neg_y = 0
         break
     else:
-        mov_neg_y = 2
+        mov_neg_y = 1
 
     #bottom barrier
     while collision_3 == 1:
         mov_pos_y = 0
         break
     else:
-        mov_pos_y = 2
+        mov_pos_y = 1
 
     #inner barriers
-
-    #left in barrier
-    while collision_5 == 1:
-        mov_neg_x = 0
-        break
-    else:
-        mov_neg_x = 2
-
-    #right in barrier
-    while collision_8 == 1:
-        mov_pos_x = 0
-        break
-    else:
-        mov_pos_x = 2
+    '''Inner barriers'''
 
     #top in barrier
     while collision_6 == 1:
-        mov_neg_y = 0
+        in_mov_pos_y = 0
         break
     else:
-        mov_neg_y = 2
+        in_mov_pos_y = 1
+
+    #right in barrier
+    while collision_8 == 1:
+        in_mov_neg_x = 0
+        break
+    else:
+        in_mov_neg_x = 1
+
+    #left in barrier
+    while collision_5 == 1:
+        in_mov_pos_x = 0
+        break
+    else:
+        in_mov_pos_x = 1
 
     #bottom in barrier
     while collision_7 == 1:
-        mov_pos_y = 0
+        in_mov_neg_y = 0
         break
     else:
-        mov_pos_y = 2
+        in_mov_neg_y = 1
 
+    #----Collisions Over-----#
+    
     
         
     
         
-
-        
-
-    
-
 
     #update display each frame
     pg.display.update()
