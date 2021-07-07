@@ -55,7 +55,9 @@ while not done:
     if pressed[pg.K_RIGHT]: x+= mov_pos_x and in_mov_pos_x
 
 
-    scrn.fill((0,0,0))
+    #scrn.fill((0,0,0))
+    scrn.blit(bg,(0,0))
+
     
     #drawing boundaries
     bound_1 = pg.draw.rect(scrn, (225,225,225), pg.Rect(30, 30, 20, 450))
