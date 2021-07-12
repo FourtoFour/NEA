@@ -1,6 +1,8 @@
 import pygame as pg
 import time
 
+#need to implement car physics.
+
 #initiate
 pg.init()
 
@@ -46,10 +48,14 @@ while not done:
 
     #registering key presses
     pressed = pg.key.get_pressed()
-    if pressed[pg.K_UP]: y-= mov_neg_y and in_mov_neg_y
-    if pressed[pg.K_DOWN]: y+= mov_pos_y and in_mov_pos_y
-    if pressed[pg.K_LEFT]: x-= mov_neg_x and in_mov_neg_x
-    if pressed[pg.K_RIGHT]: x+= mov_pos_x and in_mov_pos_x
+    if pressed[pg.K_UP]:
+        y-= mov_neg_y and in_mov_neg_y
+    if pressed[pg.K_DOWN]:
+        y+= mov_pos_y and in_mov_pos_y
+    if pressed[pg.K_LEFT]:
+        x-= mov_neg_x and in_mov_neg_x
+    if pressed[pg.K_RIGHT]:
+        x+= mov_pos_x and in_mov_pos_x
 
     #this code below was causing bg not to load
     #scrn.fill((0,0,0))
