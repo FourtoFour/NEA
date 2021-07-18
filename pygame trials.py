@@ -13,7 +13,7 @@ scrn = pg.display.set_mode((500,500))
 pg.display.set_caption("pg_trials.py")
 
 #background for game
-bg = pg.image.load("updatedmapdirt.png")
+bg = pg.image.load("grassndirt.png")
 
 #idk what this does
 done = False
