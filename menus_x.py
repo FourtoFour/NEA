@@ -207,6 +207,11 @@ class Ui_MainWindow(object):
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        def run_other_file():
+            exec(open('pygame trials.py').read())
+
+        self.pushButton_6.clicked.connect(run_other_file)
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -225,7 +230,7 @@ class Ui_MainWindow(object):
         self.label_4.setText(_translate("MainWindow", "2nd"))
         self.label_5.setText(_translate("MainWindow", "3rd"))
         self.label_6.setText(_translate("MainWindow", "4th"))
-        self.label_7.setText(_translate("MainWindow", "5st"))
+        self.label_7.setText(_translate("MainWindow", "5th"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Leaderboards"))
         self.label_8.setText(_translate("MainWindow", "Audio Settings"))
         self.label_9.setText(_translate("MainWindow", "Sfx Volume"))
