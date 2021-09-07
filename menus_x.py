@@ -210,7 +210,13 @@ class Ui_MainWindow(object):
         def run_other_file():
             exec(open('pygame trials.py').read())
 
+        def run_txt_file():
+            f = open('about.txt')
+            print(f.read())
+            
+
         self.pushButton_6.clicked.connect(run_other_file)
+        self.pushButton_5.clicked.connect(run_txt_file)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -226,11 +232,11 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Game"))
         self.label.setText(_translate("MainWindow", "Leaderboard"))
         self.label_2.setText(_translate("MainWindow", "Top Scorers"))
-        self.label_3.setText(_translate("MainWindow", "1st"))
-        self.label_4.setText(_translate("MainWindow", "2nd"))
-        self.label_5.setText(_translate("MainWindow", "3rd"))
-        self.label_6.setText(_translate("MainWindow", "4th"))
-        self.label_7.setText(_translate("MainWindow", "5th"))
+        self.label_3.setText(_translate("MainWindow", "1st:8"))
+        self.label_4.setText(_translate("MainWindow", "2nd:7"))
+        self.label_5.setText(_translate("MainWindow", "3rd:6"))
+        self.label_6.setText(_translate("MainWindow", "4th:5"))
+        self.label_7.setText(_translate("MainWindow", "5th:4"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Leaderboards"))
         self.label_8.setText(_translate("MainWindow", "Audio Settings"))
         self.label_9.setText(_translate("MainWindow", "Sfx Volume"))
