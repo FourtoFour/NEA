@@ -25,7 +25,7 @@ yellow = (255, 255, 0)
 
 m_font = pg.font.SysFont("Comic Sans MS", 30)
 
-label_seen = m_font.render("Python and Pygame are fun!", 1, yellow)
+label_seen = m_font.render("Text example!", 1, yellow)
 
 scrn.blit(label_seen, (100, 100))
 
@@ -187,7 +187,7 @@ while not done:
         
 
     #update display each frame
-    scrn.blit(label_seen, (100, 100))
+    scrn.blit(label_seen, (250, 0))
     pg.display.update()
 
 
