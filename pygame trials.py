@@ -1,7 +1,7 @@
 import pygame as pg
 import time
 
-#need to implement car physics.
+#not using tkinter as it causes crashes
 
 #initiate
 pg.init()
@@ -13,14 +13,21 @@ scrn = pg.display.set_mode((500,500))
 pg.display.set_caption("pg_trials.py")
 
 #background for game
-bg = pg.image.load("grassndirt.png")
+bg = pg.image.load("stonensand.png")
 
 #idk what this does
 done = False
 
-
-
 pg.draw.rect(scrn, (225,225,225), pg.Rect(30, 30, 60, 60))
+
+#test_text
+yellow = (255, 255, 0)
+
+m_font = pg.font.SysFont("Comic Sans MS", 30)
+
+label_seen = m_font.render("Python and Pygame are fun!", 1, yellow)
+
+scrn.blit(label_seen, (100, 100))
 
 #for player rect
 x = 60
@@ -42,6 +49,8 @@ while not done:
         if event.type == pg.QUIT:
 
             done = True
+    
+
 
     #boilerplate over
     clock.tick(200)
@@ -72,12 +81,13 @@ while not done:
     bound_6 = pg.draw.rect(scrn, (225,225,225), pg.Rect(175, 150, 150, 20))
     bound_7 = pg.draw.rect(scrn, (225,225,225), pg.Rect(165, 300, 180, 20))
     bound_8 = pg.draw.rect(scrn, (225,225,225), pg.Rect(325, 150, 20, 150))
+    #lap boundary
+    bound_9 = pg.draw.rect(scrn, (225,225,225), pg.Rect(345, 150, 125, 20))
     
 
     
     #draw rectangle for player movement
     player_rect = pg.draw.rect(scrn, (0,128,225), pg.Rect(x,y, 20,20))
-    
 
     #collisions between player and stationary boundaries
     collision_1 = bound_1.colliderect(player_rect)
@@ -88,6 +98,7 @@ while not done:
     collision_6 = bound_6.colliderect(player_rect)
     collision_7 = bound_7.colliderect(player_rect)
     collision_8 = bound_8.colliderect(player_rect)
+    collision_9 = bound_9.colliderect(player_rect)
     
     if collision_1 == 1:
         print("collision_1 is hit")
@@ -105,6 +116,8 @@ while not done:
         print("collision_7 is hit")
     elif collision_8 == 1:
         print("collision_8 is hit")
+    elif collision_9 == 1:
+        print("collision_9 is hit")
     #denying collision moves
 
     #left barrier
@@ -174,6 +187,7 @@ while not done:
         
 
     #update display each frame
+    scrn.blit(label_seen, (100, 100))
     pg.display.update()
 
 
