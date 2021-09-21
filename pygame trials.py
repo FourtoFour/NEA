@@ -23,11 +23,11 @@ pg.draw.rect(scrn, (225,225,225), pg.Rect(30, 30, 60, 60))
 #test_text
 yellow = (255, 255, 0)
 
-m_font = pg.font.SysFont("Comic Sans MS", 30)
+m_font = pg.font.SysFont("Comic Sans MS", 20)
 
-label_seen = m_font.render("Text example!", 1, yellow)
+label_seen = m_font.render("Time: ", 1, yellow)
 
-scrn.blit(label_seen, (100, 100))
+
 
 #for player rect
 x = 60
@@ -54,6 +54,18 @@ while not done:
 
     #boilerplate over
     clock.tick(200)
+
+    #time settings
+    ticks=pg.time.get_ticks()
+    millis=ticks%1000
+    sec=int(ticks/1000 % 60)
+    mins=int(ticks/60000 % 24)
+    time_output='{minutes:02d}:{seconds:02d}:{millis}'.format(minutes=mins, millis=millis, seconds=sec)
+    print(time_output)
+
+    #outputting time
+    label_seen = m_font.render("Time: "+time_output, 1, yellow)
+
 
     #registering key presses
     pressed = pg.key.get_pressed()
@@ -82,7 +94,7 @@ while not done:
     bound_7 = pg.draw.rect(scrn, (225,225,225), pg.Rect(165, 300, 180, 20))
     bound_8 = pg.draw.rect(scrn, (225,225,225), pg.Rect(325, 150, 20, 150))
     #lap boundary
-    bound_9 = pg.draw.rect(scrn, (225,225,225), pg.Rect(345, 150, 125, 20))
+    bound_9 = pg.draw.rect(scrn, (0,0,0), pg.Rect(340, 215, 130, 10))
     
 
     
@@ -187,7 +199,7 @@ while not done:
         
 
     #update display each frame
-    scrn.blit(label_seen, (250, 0))
+    scrn.blit(label_seen, (330, 0))
     pg.display.update()
 
 
