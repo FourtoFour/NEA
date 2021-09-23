@@ -1,5 +1,7 @@
 import pygame as pg
+from tkinter import messagebox
 import time
+import sys
 
 #not using tkinter as it causes crashes
 
@@ -30,7 +32,10 @@ label_seen = m_font.render("Time: ", 1, yellow)
 #lap counter
 lap_count = 0
 
-
+#finished result actions
+def end_result():
+    pg.quit()
+    messagebox.showinfo("End of match","You completed the 5 laps in "+time_output+" seconds!")
 
 #for player rect
 x = 60
@@ -72,6 +77,10 @@ while not done:
     #lap output
     new_lp = str(lap_count)
     label_seen_2 = m_font.render("Lap: "+new_lp, 1, yellow)
+
+    #lap finished actions
+    if lap_count == 5:
+        end_result()
 
 
     #registering key presses
@@ -231,6 +240,7 @@ class car(pg.sprite.Sprite):
         print('asdasdas')
 
 car.x()
+
         
     
     
