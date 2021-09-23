@@ -37,6 +37,10 @@ def end_result():
     pg.quit()
     messagebox.showinfo("End of match","You completed the 5 laps in "+time_output+" seconds!")
 
+#checkpoint sound
+check_sound = pg.mixer.Sound("check_ding.wav")
+last_sound = pg.mixer.Sound("last_ding.wav")
+
 #for player rect
 x = 60
 y = 60
@@ -153,6 +157,12 @@ while not done:
     #special collision for player movement
     if player_rect.x in range(345, 441) and player_rect.y == 196:
         lap_count = lap_count + 1
+        pg.mixer.Sound.play(check_sound)
+        pg.mixer.music.stop()
+
+    if player_rect.x in range(345, 441) and player_rect.y == 196 and lap_count == 4:
+        pg.mixer.Sound.play(last_sound)
+        pg.mixer.music.stop()
         
 
     
@@ -212,6 +222,13 @@ while not done:
 
     #bottom in barrier
     while collision_7 == 1:
+        in_mov_neg_y = 0
+        break
+    else:
+        in_mov_neg_y = 1
+
+    #s/f line
+    while collision_9 == 1:
         in_mov_neg_y = 0
         break
     else:
