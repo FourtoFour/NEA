@@ -27,6 +27,9 @@ m_font = pg.font.SysFont("Comic Sans MS", 20)
 
 label_seen = m_font.render("Time: ", 1, yellow)
 
+#lap counter
+lap_count = 0
+
 
 
 #for player rect
@@ -61,10 +64,14 @@ while not done:
     sec=int(ticks/1000 % 60)
     mins=int(ticks/60000 % 24)
     time_output='{minutes:02d}:{seconds:02d}:{millis}'.format(minutes=mins, millis=millis, seconds=sec)
-    print(time_output)
+    #print(time_output)
 
     #outputting time
     label_seen = m_font.render("Time: "+time_output, 1, yellow)
+
+    #lap output
+    new_lp = str(lap_count)
+    label_seen_2 = m_font.render("Lap: "+new_lp, 1, yellow)
 
 
     #registering key presses
@@ -101,6 +108,9 @@ while not done:
     #draw rectangle for player movement
     player_rect = pg.draw.rect(scrn, (0,128,225), pg.Rect(x,y, 20,20))
 
+    print(player_rect.x, player_rect.y)
+
+
     #collisions between player and stationary boundaries
     collision_1 = bound_1.colliderect(player_rect)
     collision_2 = bound_2.colliderect(player_rect)
@@ -130,6 +140,13 @@ while not done:
         print("collision_8 is hit")
     elif collision_9 == 1:
         print("collision_9 is hit")
+
+    #special collision for player movement
+    if player_rect.x in range(345, 441) and player_rect.y == 196:
+        lap_count = lap_count + 1
+        
+
+    
     #denying collision moves
 
     #left barrier
@@ -200,6 +217,7 @@ while not done:
 
     #update display each frame
     scrn.blit(label_seen, (330, 0))
+    scrn.blit(label_seen_2, (30, 0))
     pg.display.update()
 
 
