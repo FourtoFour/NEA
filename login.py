@@ -108,11 +108,12 @@ def main():
                     if ent.text() and ent_2.text() in row:
                         legitimacy = True
                         print(legitimacy)
-                        
+                        print("CRED OK!")
                     else:
                         
                         legitimacy = False
                         print(legitimacy)
+                        print("CRED INVAL")
 
 
 
