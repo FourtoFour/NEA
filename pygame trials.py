@@ -16,6 +16,7 @@ pg.display.set_caption("pg_trials.py")
 
 #background for game
 bg = pg.image.load("stonensand.png")
+car_bg = pg.image.load("car-removebg-preview.png")
 
 #idk what this does
 done = False
@@ -122,6 +123,13 @@ while not done:
     player_rect = pg.draw.rect(scrn, (0,128,225), pg.Rect(x,y, 20,20))
 
     print(player_rect.x, player_rect.y)
+
+    #debug rectangle
+    d_rect = car_bg.get_rect()
+    scale_d_rect = pg.transform.scale(car_bg,(75,75))
+    d_rect.center = (100,100)
+     
+    scrn.blit(scale_d_rect,d_rect)
 
 
     #collisions between player and stationary boundaries
