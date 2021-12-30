@@ -1,5 +1,6 @@
 import pygame as pg
-from tkinter import messagebox
+from tkinter import messagebox, Label
+from PyQt5 import QtCore, QtGui, QtWidgets
 import time
 import sys
 
@@ -16,7 +17,6 @@ pg.display.set_caption("pg_trials.py")
 
 #background for game
 bg = pg.image.load("stonensand.png")
-car_bg = pg.image.load("car-removebg-preview.png")
 
 #idk what this does
 done = False
@@ -37,7 +37,11 @@ lap_count = 0
 def end_result():
     pg.quit()
     messagebox.showinfo("End of match","You completed the 5 laps in "+time_output+" seconds!")
+    f = open("times.txt","a")
+    f.write(time_output+"\n")
+    f.close()
 
+    
 #checkpoint sound
 check_sound = pg.mixer.Sound("check_ding.wav")
 last_sound = pg.mixer.Sound("last_ding.wav")
@@ -84,7 +88,7 @@ while not done:
     label_seen_2 = m_font.render("Lap: "+new_lp, 1, yellow)
 
     #lap finished actions
-    if lap_count == 5:
+    if lap_count == 4:
         end_result()
 
 
@@ -124,12 +128,6 @@ while not done:
 
     print(player_rect.x, player_rect.y)
 
-    #debug rectangle
-    d_rect = car_bg.get_rect()
-    scale_d_rect = pg.transform.scale(car_bg,(75,75))
-    d_rect.center = (100,100)
-     
-    scrn.blit(scale_d_rect,d_rect)
 
 
     #collisions between player and stationary boundaries
